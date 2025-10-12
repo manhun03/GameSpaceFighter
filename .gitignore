@@ -1,0 +1,15 @@
+﻿# Unity temporary folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+UserSettings/
+.vs/
+.idea/
+.DS_Store
+*.csproj
+*.unityproj
+*.sln
