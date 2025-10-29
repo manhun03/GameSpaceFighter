@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -8,10 +9,26 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private int CurrentTierBullet;
     [SerializeField] private GameObject VFX;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("HP Settings")]
+    [SerializeField] private float maxHp = 50f;
+    [SerializeField] private float currentHp;
+    [SerializeField] private Image hpBar;
+
+    [Header("Shield Settings")]
+    [SerializeField] private float maxShield = 50f;
+    [SerializeField] private float currentShield;
+    [SerializeField] private Image shiledBar;
+    [SerializeField] GameObject shieldObject; 
+    
+    private Animator animator;
+    private const string flashWhiteAnim = "FlashWhite";
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        currentHp = maxHp;
+        currentShield = maxShield;
+        updateHPBar();
+        updateShiledBar();
     }
 
     // Update is called once per frame
@@ -19,8 +36,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         Move();
         Fire();
-
-        
     }
 
     private void Move()
@@ -44,15 +59,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Instantiate(BulletList[CurrentTierBullet], transform.position, Quaternion.identity);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Monster")|| collision.CompareTag("Egg"))
-        {
-            Destroy(gameObject);
-
-        }
-
-    }
 
     //Hàm hiệu ứng nổ 
     private void OnDestroy()
@@ -62,5 +68,48 @@ public class NewMonoBehaviourScript : MonoBehaviour
             var vfx = Instantiate(VFX, transform.position, Quaternion.identity);
             Destroy(vfx, 1f);
         }
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        if (currentShield > 0)
+        {
+            currentShield -= dmg;
+            if (currentShield < 0)
+            {
+                float leftoverDamage = -currentShield;
+                currentShield = 0;
+                currentHp -= leftoverDamage;
+            }
+            updateShiledBar();
+            if (currentShield <= 0 && shieldObject != null)
+                shieldObject.SetActive(false);
+        }
+        else
+        {
+            currentHp -= dmg;
+            animator.SetTrigger(flashWhiteAnim);
+        }
+        currentHp = Mathf.Max(currentHp, 0);
+        currentShield = Mathf.Max(currentShield, 0);
+
+        updateHPBar();
+        if (currentHp <= 0)
+            Die();
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    private void updateHPBar()
+    {
+        if (hpBar != null)
+            hpBar.fillAmount = currentHp / maxHp;
+    }
+    private void updateShiledBar()
+    {
+        if(shiledBar != null)
+            shiledBar.fillAmount = currentShield / maxShield;
     }
 }
