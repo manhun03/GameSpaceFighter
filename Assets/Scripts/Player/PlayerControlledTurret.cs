@@ -12,8 +12,8 @@ public class PlayerControlledTurret : MonoBehaviour
 
     void Update()
     {
-        // Khi giữ chuột trái, bắn nếu đã qua cooldown
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        
+        if (Input.GetMouseButton(1) && Time.time >= nextFireTime)
         {
             Fire();
             nextFireTime = Time.time + shotCooldown;
