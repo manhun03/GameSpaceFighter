@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private float currentShield;
     [SerializeField] private Image shiledBar;
     [SerializeField] GameObject shieldObject; 
+    LevelManager levelManager;
     
     private Animator animator;
     private const string flashWhiteAnim = "FlashWhite";
@@ -29,6 +31,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         currentShield = maxShield;
         updateHPBar();
         updateShiledBar();
+        levelManager = FindFirstObjectByType<LevelManager>();
     }
 
     // Update is called once per frame
@@ -100,6 +103,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+        if (levelManager != null)
+        {
+            levelManager.LoadGameOver();
+        }
+        else
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     private void updateHPBar()

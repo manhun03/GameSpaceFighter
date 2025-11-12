@@ -23,10 +23,16 @@ public class GameManagerDemo : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject); // 🔥 Giữ GameManagerDemo qua các scene
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
+
 
     /// <summary>
     /// Gọi khi enemy bị tiêu diệt để cộng điểm.
