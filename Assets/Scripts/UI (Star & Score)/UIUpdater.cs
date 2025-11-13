@@ -1,25 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // N?u b?n dùng TextMeshPro
+using TMPro; 
 
 public class UIUpdater : MonoBehaviour
 {
     [Header("UI Components")]
     public Image[] stars; // 5 ngôi sao
-    public Sprite emptyStar;   // ngôi sao r?ng
-    public Sprite halfStar;    // ngôi sao n?a sáng
-    public Sprite fullStar;    // ngôi sao sáng ??y
-    public TextMeshProUGUI scoreText; // N?u dùng Text th??ng thì thay b?ng "public Text scoreText;"
+    public Sprite emptyStar;   
+    public Sprite halfStar;    
+    public Sprite fullStar;    
+    public TextMeshProUGUI scoreText;  
 
     private int lastDisplayedScore = -1;
-
     private void Update()
     {
-        if (GameManagerDemo.Instance == null) return;
+        if (ScoreKeeper.Instance == null) return;
 
-        int currentScore = GameManagerDemo.Instance.GetScore();
+        int currentScore = ScoreKeeper.Instance.GetScore();
 
-        // Ch? update n?u ?i?m thay ??i ?? t?i ?u
         if (currentScore != lastDisplayedScore)
         {
             UpdateStars(currentScore);
@@ -30,7 +28,7 @@ public class UIUpdater : MonoBehaviour
 
     private void UpdateStars(int score)
     {
-        int maxScore = 1000;
+        //int maxScore = 1000;
         int pointsPerFullStar = 200;
         int pointsPerHalfStar = 100;
 

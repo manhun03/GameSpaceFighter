@@ -17,7 +17,7 @@ TagManager:
   - Water
   - UI
   - star
-  - 
+  - button
   - 
   - 
   - 
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1124976709
+    locked: 0
+  - name: GameGamGaG
+    uniqueID: 2773815073
     locked: 0
   m_RenderingLayers:
   - Default

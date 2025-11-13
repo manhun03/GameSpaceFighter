@@ -37,6 +37,7 @@ public class CruiserBoss : Enemy
         shootTimer = shootInterval;
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         currentHp = maxHp;
+        isBoss = true; 
     }
 
     private void Update()

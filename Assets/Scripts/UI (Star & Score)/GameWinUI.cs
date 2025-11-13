@@ -1,7 +1,7 @@
-﻿using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-public class GameOverUI : MonoBehaviour
+public class GameWinUI : MonoBehaviour
 {
     public TMP_Text txtScore;
 

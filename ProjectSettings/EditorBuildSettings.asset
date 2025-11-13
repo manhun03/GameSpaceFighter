@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene1 1.unity
     guid: 6ea40a29e0d977c4b9cbffb8ddddd41f
   - enabled: 1
+    path: Assets/Scenes/GameWin.unity
+    guid: 52860a58dd34ea64dbfe420e08cdeb19
+  - enabled: 1
+    path: Assets/Scenes/GamePause.unity
+    guid: 0c6a6578592b1244b969c8fd377bc54a
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 49e012efb68c99d4c9b2b6bdca4af109
   m_configObjects:
