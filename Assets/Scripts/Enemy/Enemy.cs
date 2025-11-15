@@ -1,16 +1,14 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Cấu hình máu")]
     public float maxHp = 100f;
-    [SerializeField] protected float currentHp;
-
-    [Header("Cấu hình sát thương")]
+    protected float currentHp;
     public float dmg = 2f;
-
     public int scoreValue = 100;
+    public bool isBoss = false;
+
     protected virtual void Start()
     {
         currentHp = maxHp;
@@ -19,7 +17,6 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(float dmg)
     {
         currentHp -= dmg;
-        currentHp = Mathf.Max(currentHp, 0);
         if (currentHp <= 0)
         {
             Die();
@@ -28,21 +25,17 @@ public class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
-        if (GameManagerDemo.Instance != null)
-            GameManagerDemo.Instance.AddScore(scoreValue);
+        Debug.Log("Enemy has died!");
+
+        if (ScoreKeeper.Instance != null)
+            ScoreKeeper.Instance.ModifyScore(scoreValue);
 
         Destroy(gameObject);
-    }
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        NewMonoBehaviourScript player = collision.GetComponent<NewMonoBehaviourScript>();
-        if (collision.CompareTag("Player"))
+        if (isBoss)
         {
-            if (player != null)
-            {
-                player.TakeDamage(dmg);
-            }
+            Debug.Log("Boss defeated -> GameWin!");
+            SceneManager.LoadScene("GameWin");
         }
     }
 }

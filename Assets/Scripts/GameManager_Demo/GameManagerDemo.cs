@@ -5,55 +5,39 @@ public class GameManagerDemo : MonoBehaviour
     public static GameManagerDemo Instance;
 
     [Header("Cấu hình Boss")]
-    [Tooltip("Điểm cần đạt để gọi Boss ra")]
     public int bountyScore = 1000;
-
-    [Tooltip("Prefab của Boss sẽ được gọi ra")]
     public GameObject bossPrefab;
-
-    [Tooltip("Vị trí mà Boss sẽ xuất hiện")]
     public Transform bossSpawnPoint;
 
-    private bool bossSpawned = false;
+    [Header("Enemy Spawners")]
+    [SerializeField] private GameObject[] enemySpawners;
 
-    [Header("Điểm số và kẻ địch")]
-    [SerializeField] private GameObject[] enemySpawners; // các spawner sinh enemy
-    public int score = 0;
+    private bool bossSpawned = false;
 
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
-    /// <summary>
-    /// Gọi khi enemy bị tiêu diệt để cộng điểm.
-    /// </summary>
-    public void AddScore(int amount)
+    // 🔹 Được gọi từ ScoreKeeper khi điểm thay đổi
+    public void CheckForBossSpawn(int currentScore)
     {
-        score += amount;
-        Debug.Log($"🏆 Điểm hiện tại: {score}");
+        if (bossSpawned) return;
 
-        CheckForBossSpawn();
-    }
-
-    /// <summary>
-    /// Kiểm tra xem đã đủ điểm để gọi boss chưa.
-    /// </summary>
-    private void CheckForBossSpawn()
-    {
-        if (!bossSpawned && score >= bountyScore)
+        if (currentScore >= bountyScore)
         {
             SpawnBoss();
             DisableEnemySpawners();
         }
     }
 
-    /// <summary>
-    /// Tạo boss ra vị trí chỉ định.
-    /// </summary>
     private void SpawnBoss()
     {
         if (bossPrefab != null && bossSpawnPoint != null)
@@ -68,9 +52,6 @@ public class GameManagerDemo : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Tắt toàn bộ các điểm spawn enemy.
-    /// </summary>
     private void DisableEnemySpawners()
     {
         if (enemySpawners == null || enemySpawners.Length == 0)
@@ -85,11 +66,12 @@ public class GameManagerDemo : MonoBehaviour
         Debug.Log("❌ Tất cả enemy spawner đã bị tắt.");
     }
 
-    /// <summary>
-    /// Lấy điểm hiện tại (nếu cần hiển thị sau này).
-    /// </summary>
-    public int GetScore()
+    public void ResetGame()
     {
-        return score;
+        bossSpawned = false;
+        if (ScoreKeeper.Instance != null)
+            ScoreKeeper.Instance.ResetScore();
+
+        Debug.Log("GameManager đã reset game.");
     }
 }
