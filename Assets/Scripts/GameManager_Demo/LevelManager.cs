@@ -42,19 +42,29 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1f;
         Debug.Log("Game Continued");
     }
-    public void LoadGame()
+    //public void LoadGame()
+    //{
+    //    if (ScoreKeeper.Instance != null)
+    //        ScoreKeeper.Instance.ResetScore();
+    //    Time.timeScale = 1f;
+    //    SceneManager.LoadScene("Scene1 1");
+    //}
+    public void LoadMapSelection()
     {
-        if (ScoreKeeper.Instance != null)
-            ScoreKeeper.Instance.ResetScore();
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Scene1 1");
+        SceneManager.LoadScene("MapSelection");
     }
-
     public void LoadGameOver()
     {
         StartCoroutine(WaitAndLoad("GameOver", 2f));
     }
-
+    public void SelectMap1()
+    {
+        SceneManager.LoadScene("Scene1 1");
+    }
+    public void SelectMap2()
+    {
+        SceneManager.LoadScene("Scene1");
+    }
     public void LoadGameWin()
     {
         StartCoroutine(WaitAndLoad("GameWin", 2f));
