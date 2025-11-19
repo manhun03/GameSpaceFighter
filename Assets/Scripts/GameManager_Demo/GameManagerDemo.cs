@@ -62,8 +62,6 @@ public class GameManagerDemo : MonoBehaviour
             if (spawner != null)
                 spawner.SetActive(false);
         }
-
-        Debug.Log("❌ Tất cả enemy spawner đã bị tắt.");
     }
 
     public void ResetGame()

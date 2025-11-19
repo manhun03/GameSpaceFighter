@@ -59,11 +59,11 @@ public class LevelManager : MonoBehaviour
     }
     public void SelectMap1()
     {
-        SceneManager.LoadScene("Scene1 1");
+        SceneManager.LoadScene("Map1");
     }
     public void SelectMap2()
     {
-        SceneManager.LoadScene("Scene1");
+        SceneManager.LoadScene("Map2");
     }
     public void LoadGameWin()
     {
