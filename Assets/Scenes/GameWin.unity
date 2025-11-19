@@ -518,7 +518,7 @@ PrefabInstance:
       objectReference: {fileID: 850650129}
     - target: {fileID: 2183497811487865532, guid: 4533204b907071446acbbac7d12639ca, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadGame
+      value: LoadMapSelection
       objectReference: {fileID: 0}
     - target: {fileID: 2877399775480829571, guid: 4533204b907071446acbbac7d12639ca, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
