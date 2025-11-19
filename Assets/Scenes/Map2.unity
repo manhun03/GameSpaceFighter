@@ -4096,7 +4096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14afee61bac6594da0d4a6aa9662a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bountyScore: 1000
+  bountyScore: 2500
   bossPrefab: {fileID: 2256901323054574161, guid: c8a17910b354b1248962df8b44afa4f2, type: 3}
   bossSpawnPoint: {fileID: 438106692}
   enemySpawners:

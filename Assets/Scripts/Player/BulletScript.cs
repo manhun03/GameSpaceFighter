@@ -38,7 +38,10 @@ public class BulletScript : MonoBehaviour
             CircleFighter circleFighter = collision.GetComponent<CircleFighter>();
             Fighter fighter = collision.GetComponent<Fighter>();
             Stone stone = collision.GetComponent<Stone>();
+            Alien3 alien3 = collision.GetComponent<Alien3>();
             CruiserBoss cruiserBoss = collision.GetComponent<CruiserBoss>();
+            Destroyer destroyer = collision.GetComponent<Destroyer>();
+            DestroyerBoss destroyerBoss = collision.GetComponent<DestroyerBoss>();
 
             GameObject effect = Instantiate(boomEffect, transform.position, Quaternion.identity);
             effect.transform.parent = null;
@@ -53,10 +56,19 @@ public class BulletScript : MonoBehaviour
                 fighter.TakeDamage(damage);
             if(stone != null)
                 stone.TakeDamage(damage);
+            if (alien3 != null)
+                alien3.TakeDamage(damage);
+            if (destroyer != null) 
+                destroyer.TakeDamage(damage);
             if (cruiserBoss != null)
             {
                 cruiserBoss.TakeDamage(damage);
             }
+            if (destroyerBoss != null)
+            {
+                destroyerBoss.TakeDamage(damage);
+            }
+
 
             Destroy(gameObject);
         }

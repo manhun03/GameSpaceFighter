@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6492612606844271189
+--- !u!1 &357424162687399582
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8224308387638073667}
-  - component: {fileID: 674328071066422498}
-  - component: {fileID: 4025786640651523303}
-  - component: {fileID: 1516895972677815430}
-  - component: {fileID: 8347229561227053430}
+  - component: {fileID: 2176857720208235416}
+  - component: {fileID: 707252402865915570}
+  - component: {fileID: 2295765474515333681}
+  - component: {fileID: 1159986731541640622}
+  - component: {fileID: 3135224333386200208}
   m_Layer: 0
-  m_Name: EnemyBullet
-  m_TagString: Untagged
+  m_Name: Alien 3
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8224308387638073667
+--- !u!4 &2176857720208235416
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6492612606844271189}
+  m_GameObject: {fileID: 357424162687399582}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5466986, y: -4.327881, z: -4.28}
-  m_LocalScale: {x: 2.78, y: 2.98, z: 1}
+  m_LocalPosition: {x: 5.65, y: 0.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2094553247337672594}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &674328071066422498
+--- !u!212 &707252402865915570
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6492612606844271189}
+  m_GameObject: {fileID: 357424162687399582}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,43 +77,27 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1255090983
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2143259657982690645, guid: 9231f8236c5809a4db55d7625f4d8200, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3e16a3f3d3ad7a459cf2c2e7e96cff9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.19, y: 0.19}
+  m_Size: {x: 3.265625, y: 7.484375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4025786640651523303
-MonoBehaviour:
+--- !u!70 &2295765474515333681
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6492612606844271189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c33962862eb90b4fa133eb6d98a2067, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  lifeTime: 1
-  damage: 5
-  takeDmgEffect: {fileID: 3005202564974179537, guid: 919f069b85d93b1498b8c4d637acbe6c, type: 3}
---- !u!58 &1516895972677815430
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6492612606844271189}
+  m_GameObject: {fileID: 357424162687399582}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -140,16 +125,17 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.095
---- !u!50 &8347229561227053430
+  m_Offset: {x: 0.00000023841858, y: 0}
+  m_Size: {x: 1.233211, y: 4.79}
+  m_Direction: 0
+--- !u!50 &1159986731541640622
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6492612606844271189}
+  m_GameObject: {fileID: 357424162687399582}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -157,7 +143,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 0.05
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -169,3 +155,54 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3135224333386200208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357424162687399582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed08f8d628d85404ab2e122a1a67536f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 4
+  dmg: 2
+  scoreValue: 100
+  isBoss: 0
+  bulletPrefab: {fileID: 1528010322414450007, guid: 9a45802efdebb8f49aecd30578da9131, type: 3}
+  firePoint: {fileID: 2094553247337672594}
+  shootInterval: 1.5
+  detectRange: 100
+--- !u!1 &5920724276247487858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2094553247337672594}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2094553247337672594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5920724276247487858}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2176857720208235416}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

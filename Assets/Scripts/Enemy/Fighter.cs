@@ -16,7 +16,6 @@ public class Fighter : Enemy
     [SerializeField] private Transform firePoint;
     [SerializeField] private float shootInterval = 2f;
     [SerializeField] private float detectRange = 15f;
-    //[SerializeField] private float speedCircleBullet = 10f;
 
     Transform player;
     private float shootTimer = 0f;
