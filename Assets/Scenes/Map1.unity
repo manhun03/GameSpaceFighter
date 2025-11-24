@@ -3930,7 +3930,7 @@ MonoBehaviour:
   - {fileID: 1252746553329747427, guid: 26497d65a695f024d89f4d58b609e2c9, type: 3}
   CurrentTierBullet: 0
   VFX: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
-  maxHp: 10000
+  maxHp: 100
   currentHp: 0
   hpBar: {fileID: 35575908}
   maxShield: 10
@@ -3988,7 +3988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14afee61bac6594da0d4a6aa9662a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bountyScore: 2500
+  bountyScore: 500
   bossPrefab: {fileID: 6844823826318106053, guid: 4cedbf71f70b3344587ff4e98c05788f, type: 3}
   bossSpawnPoint: {fileID: 438106692}
   enemySpawners:
@@ -4370,6 +4370,10 @@ PrefabInstance:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 1374951959}
+    - target: {fileID: 4799530455865578953, guid: 94790bde028ec0f47935989e73a2afd1, type: 3}
+      propertyPath: scoreKeeper
+      value: 
+      objectReference: {fileID: 657347077}
     - target: {fileID: 7899219100127317599, guid: 94790bde028ec0f47935989e73a2afd1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 244.73544

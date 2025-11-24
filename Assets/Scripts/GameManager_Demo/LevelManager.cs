@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     private bool isPaused = false;
+    [SerializeField] private ScoreKeeper scoreKeeper;
 
     private void Update()
     {
@@ -51,6 +52,8 @@ public class LevelManager : MonoBehaviour
     //}
     public void LoadMapSelection()
     {
+        if (ScoreKeeper.Instance != null)
+            ScoreKeeper.Instance.ResetScore();
         SceneManager.LoadScene("MapSelection");
     }
     public void LoadGameOver()
@@ -59,10 +62,15 @@ public class LevelManager : MonoBehaviour
     }
     public void SelectMap1()
     {
+        if (ScoreKeeper.Instance != null)
+            ScoreKeeper.Instance.ResetScore();
         SceneManager.LoadScene("Map1");
+        
     }
     public void SelectMap2()
     {
+        if (ScoreKeeper.Instance != null)
+            ScoreKeeper.Instance.ResetScore();
         SceneManager.LoadScene("Map2");
     }
     public void LoadGameWin()
