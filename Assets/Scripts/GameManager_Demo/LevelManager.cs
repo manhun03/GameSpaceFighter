@@ -6,7 +6,6 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     private bool isPaused = false;
-    [SerializeField] private ScoreKeeper scoreKeeper;
 
     private void Update()
     {
