@@ -10,6 +10,8 @@ public class PlayerControlledTurret : MonoBehaviour
     private int barrelIndex = 0;                 // Nòng hiện tại
     private float nextFireTime = 0f;             // Thời điểm bắn kế tiếp
 
+    private AudioManager audioManager;           // Khai báo AudioManager
+
     void Update()
     {
         
@@ -19,9 +21,16 @@ public class PlayerControlledTurret : MonoBehaviour
             nextFireTime = Time.time + shotCooldown;
         }
     }
+    private void Start()
+    {
+        audioManager = FindAnyObjectByType<AudioManager>();     // gọi audioManager
 
+    }
     void Fire()
     {
+        audioManager.PlayPlayerGun();           // Phát âm thanh bắn súng
+
+
         if (weaponPrefab == null || barrelHardpoints == null || barrelHardpoints.Length == 0)
             return;
 
@@ -36,5 +45,7 @@ public class PlayerControlledTurret : MonoBehaviour
         barrelIndex++;
         if (barrelIndex >= barrelHardpoints.Length)
             barrelIndex = 0;
+            
+
     }
 }

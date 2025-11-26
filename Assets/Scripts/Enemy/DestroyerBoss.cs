@@ -12,6 +12,8 @@ public class DestroyerBoss : Enemy
     private Vector3 startPos;
     private int moveDir;
 
+
+
     [Header("Tấn công")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform[] firePoint;
@@ -35,8 +37,12 @@ public class DestroyerBoss : Enemy
     private Animator animator;
     private const string flashRedAnim = "TakeDmg";
 
+    private bool isDead = false;                                                         // Khai báo biến isDead để kiểm tra trạng thái chết (Fuoc)
+
+
     protected override void Start()
-    {
+    {   
+        //maxHp  = 10f;                                                                //    Dùng để test âm thanh khi boss chết (Fuoc)
         base.Start();
         animator = GetComponent<Animator>();
         startPos = transform.position;
@@ -47,18 +53,51 @@ public class DestroyerBoss : Enemy
         isBoss = true;
 
         m_lineRenderer.enabled = false;
+
     }
 
     private void Update()
     {
+        if (isDead) return;                                                            // kiểm tra nếu đã chết thì không làm gì nữa (Fuoc)
+
         Move();
         DetectAndAttack();
     }
 
     public override void TakeDamage(float damage)
     {
+        if (isDead) return;                                                           // kiểm tra nếu đã chết thì không nhận damage nữa (Fuoc)
+
         base.TakeDamage(damage);
         animator?.SetTrigger(flashRedAnim);
+    }
+
+    // ⭐⭐⭐ HÀM MỚI - OVERRIDE Die() ⭐⭐⭐       Hàm này được gọi khi boss chết giúp boss không nhận damage nữa để âm thanh win không bị lặp lại nhiều lần mỗi khi nhận damage khi chết (Fuoc)
+    public override void Die()
+    {
+        if (isDead) return;
+        isDead = true;
+
+        Debug.Log("Boss defeated!");
+
+        if (ScoreKeeper.Instance != null)
+            ScoreKeeper.Instance.ModifyScore(scoreValue);
+
+        // Tắt collider
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+
+        // Tắt các script khác
+        MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour script in scripts)
+        {
+            if (script != this)
+                script.enabled = false;
+        }
+
+        // ⭐ GỌI COROUTINE TỪ CLASS CHA - KHÔNG CẦN VIẾT LẠI
+        StartCoroutine(PlayWinAndLoadScene());
     }
 
     private void Move()
@@ -211,13 +250,16 @@ public class DestroyerBoss : Enemy
         switch (randomSkill)
         {
             case 0:
-                StartCoroutine(ShootBurst()); 
+                StartCoroutine(ShootBurst());
+                audioManager.PlayBossGun(); // Phát âm thanh bắn súng
                 break;
             case 1:
                 ShootCircleBullet();
+                audioManager.PlayBossGun(); // Phát âm thanh bắn súng
                 break;
             case 2:
                 StartCoroutine(SweepLaserDown());
+                audioManager.PlayBossLaser(); // Phát âm thanh bắn laser
                 break;
             case 3:
                 CallCircleFighter();
