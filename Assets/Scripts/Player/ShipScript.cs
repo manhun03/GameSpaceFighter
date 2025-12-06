@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
+    private AudioManager audioManager;           // Khai báo AudioManager
+    private float nextFireTime = 0f;             // Thời điểm bắn kế tiếp
+    public float shotCooldown = 0.2f;            // Thời gian giữa 2 lần bắn
+
+
     [SerializeField] private float Speed;
     [SerializeField] private GameObject[] BulletList;
     [SerializeField] private int CurrentTierBullet;
@@ -32,13 +37,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
         updateHPBar();
         updateShiledBar();
         levelManager = FindFirstObjectByType<LevelManager>();
+
+        audioManager = FindAnyObjectByType<AudioManager>();     // gọi audioManager
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
-        Fire();
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)  // update bắn đạn như bên chuột phải ở PlayerControlledTurret, vì cái gốc nó gọi liên tục lên âm thanh lỗi.
+        {
+            Fire();
+            nextFireTime = Time.time + shotCooldown;
+        }
     }
 
     private void Move()
@@ -58,8 +70,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Fire()
     {
-        if(Input.GetMouseButtonDown(0))
+     
         Instantiate(BulletList[CurrentTierBullet], transform.position, Quaternion.identity);
+        audioManager.PlayPlayerGun();
     }
 
 
@@ -103,6 +116,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+        audioManager.PlayLose();           // Phát âm thanh chết của người chơi
         if (levelManager != null)
         {
             levelManager.LoadGameOver();

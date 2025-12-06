@@ -3,6 +3,7 @@
 public class GameManagerDemo : MonoBehaviour
 {
     public static GameManagerDemo Instance;
+    private AudioManager audioManager;           // Khai báo AudioManager
 
     [Header("Cấu hình Boss")]
     public int bountyScore = 1000;
@@ -16,6 +17,7 @@ public class GameManagerDemo : MonoBehaviour
 
     private void Awake()
     {
+        audioManager = FindAnyObjectByType<AudioManager>();     // gọi audioManager
         if (Instance == null)
         {
             Instance = this;
@@ -44,6 +46,7 @@ public class GameManagerDemo : MonoBehaviour
         {
             Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity);
             bossSpawned = true;
+            audioManager.PlayFightBoss();           // Phát nhạc chiến đấu với boss
             Debug.Log("🚀 Boss đã xuất hiện!");
         }
         else
